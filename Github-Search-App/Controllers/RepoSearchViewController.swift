@@ -11,13 +11,38 @@ import UIKit
 class RepoSearchViewController: UITableViewController {
     
     fileprivate let searchBarController = UISearchController(searchResultsController: nil)
+    fileprivate let cellId = "cellId"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         setUpSearchBar()
+        setUpTabeView()
+        setupAPICall()
         
+    }
+    
+    var gitRepos = [GitHubRepo]()
+    fileprivate func setupAPICall() {
+        print("setupAPICall Called")
+        let url = "https://api.github.com/search/repositories?q=podcast&sort=watchers&order=desc"
+        APIServices.shared.fetchGitHubRepo(apiUrl: url) { (result) in
+            
+            switch result {
+            case .success(let result):
+                self.gitRepos = result.items
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            default:
+                return
+            }
+        }
+    }
+    
+    
+    fileprivate func setUpTabeView() {
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
     }
     
     
@@ -32,18 +57,26 @@ class RepoSearchViewController: UITableViewController {
     }
     
 
-    
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 0
+        return gitRepos.count
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        let repo = self.gitRepos[indexPath.row]
+        cell.textLabel?.text = repo.name
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }
+
+
 
 
 extension RepoSearchViewController : UISearchBarDelegate {
