@@ -12,6 +12,8 @@
 		2F629BB922F0A279009BF9DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F629BB722F0A279009BF9DF /* Main.storyboard */; };
 		2F629BBB22F0A27C009BF9DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F629BBA22F0A27C009BF9DF /* Assets.xcassets */; };
 		2F629BBE22F0A27C009BF9DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F629BBC22F0A27C009BF9DF /* LaunchScreen.storyboard */; };
+		2F629BC622F0A2C5009BF9DF /* RepoSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F629BC522F0A2C5009BF9DF /* RepoSearchViewController.swift */; };
+		2F629BCA22F0A40D009BF9DF /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F629BC922F0A40D009BF9DF /* UIView+Layout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		2F629BBA22F0A27C009BF9DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F629BBD22F0A27C009BF9DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F629BBF22F0A27C009BF9DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2F629BC522F0A2C5009BF9DF /* RepoSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoSearchViewController.swift; sourceTree = "<group>"; };
+		2F629BC922F0A40D009BF9DF /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,8 @@
 		2F629BB222F0A279009BF9DF /* Github-Search-App */ = {
 			isa = PBXGroup;
 			children = (
+				2F629BC822F0A3E9009BF9DF /* Helpers */,
+				2F629BC722F0A2CE009BF9DF /* Controllers */,
 				2F629BB322F0A279009BF9DF /* AppDelegate.swift */,
 				2F629BB522F0A279009BF9DF /* ViewController.swift */,
 				2F629BB722F0A279009BF9DF /* Main.storyboard */,
@@ -62,6 +68,22 @@
 				2F629BBF22F0A27C009BF9DF /* Info.plist */,
 			);
 			path = "Github-Search-App";
+			sourceTree = "<group>";
+		};
+		2F629BC722F0A2CE009BF9DF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2F629BC522F0A2C5009BF9DF /* RepoSearchViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2F629BC822F0A3E9009BF9DF /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2F629BC922F0A40D009BF9DF /* UIView+Layout.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,7 +157,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F629BCA22F0A40D009BF9DF /* UIView+Layout.swift in Sources */,
 				2F629BB622F0A279009BF9DF /* ViewController.swift in Sources */,
+				2F629BC622F0A2C5009BF9DF /* RepoSearchViewController.swift in Sources */,
 				2F629BB422F0A279009BF9DF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
