@@ -77,7 +77,6 @@ class RepoDetailViewController: UICollectionViewController, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let size : CGSize = indexPath.row == 0 ? CGSize(width: view.frame.width, height: 450) : CGSize(width: view.frame.width, height: 200)
-        
         return size
     }
     
@@ -87,6 +86,9 @@ extension RepoDetailViewController: RepoContributorSelectionDelegate {
     
     func repoContributorSelected(repoContributor: RepoContributor) {
         print(repoContributor.login ?? "")
+        let destinationVC = ContributorDetailViewController()
+        destinationVC.repoContributor = repoContributor
+        navigationController?.pushViewController(destinationVC, animated: true)
     }
     
     
