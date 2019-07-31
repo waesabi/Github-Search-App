@@ -17,20 +17,19 @@ class RepoSearchViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setUpSearchBar()
         setUpTabeView()
         
-        setupAPICall(searchText: "movie")
+        setupAPICall(searchedText: "movie")
         
     }
     
     
     
-    fileprivate func setupAPICall(searchText: String) {
-        let url = "https://api.github.com/search/repositories?q=\(searchText)&sort=watchers&order=desc"
+    fileprivate func setupAPICall(searchedText: String) {
         print("setupAPICall Called")
-        APIServices.shared.fetchGitHubRepo(apiUrl: url) { (result) in
+        APIServices.shared.searchGitRepo(searchedRepo: searchedText) { (result) in
             
             switch result {
             case .success(let result):
@@ -110,7 +109,7 @@ extension RepoSearchViewController : UISearchBarDelegate {
         
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
-            self.setupAPICall(searchText: searchText)
+            self.setupAPICall(searchedText: searchText)
         })
     }
 }

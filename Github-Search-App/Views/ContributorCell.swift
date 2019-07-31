@@ -7,13 +7,25 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ContributorCell: UICollectionViewCell {
     
     let contributomImage = UIImageView(cornerRadius: 8)
     
+    var repoContributor: RepoContributor? {
+        didSet {
+            if let contributor = repoContributor, let imageUrl = contributor.avatar_url {
+                contributomImage.sd_setImage(with: URL(string: imageUrl))
+            }
+        }
+    }
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        contributomImage.backgroundColor = UIColor(white: 0.95, alpha: 1)
         
         self.addSubview(contributomImage)
         contributomImage.fillSuperview()

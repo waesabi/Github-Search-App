@@ -25,10 +25,10 @@ class RepoContributorViewCell: UICollectionViewCell {
             contributorController.view
             ])
         stackView.axis = .vertical
-        stackView.spacing = 16
+        stackView.spacing = 8
         
         self.addSubview(stackView)
-        stackView.fillSuperview(padding: .init(top: 16, left: 16, bottom: 16, right: 16))
+        stackView.fillSuperview(padding: .init(top: 0, left: 16, bottom: 8, right: 16))
     }
     
     required init?(coder aDecoder: NSCoder) {

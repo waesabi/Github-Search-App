@@ -10,7 +10,7 @@ import Foundation
 
 // Make all property as Optional because we donot know if any property becomes unavialable in json response
 
-struct GitHubRepo : Codable {
+struct GitHubRepo : Decodable {
     let name: String?
     let full_name: String?
     let owner: RepoOwner?
@@ -20,7 +20,7 @@ struct GitHubRepo : Codable {
     let watchers: Int?
 }
 
-struct RepoOwner : Codable {
+struct RepoOwner : Decodable {
     let id: Int?
     let avatar_url: String?
 }

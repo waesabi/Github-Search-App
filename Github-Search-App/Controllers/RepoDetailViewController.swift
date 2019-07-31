@@ -13,6 +13,7 @@ class RepoDetailViewController: UICollectionViewController, UICollectionViewDele
     var gitRepo : GitHubRepo?
     let repoDetailId = "repoDetailId"
     let repoContributorId = "repoContributorId"
+    var repoContributors = [RepoContributor]()
     
     
     
@@ -22,8 +23,9 @@ class RepoDetailViewController: UICollectionViewController, UICollectionViewDele
         collectionView.backgroundColor = .white
         setupNavigationBar()
         setupCollectionView()
+        fetchContributorDetails()
     }
-    
+
     fileprivate func setupNavigationBar() {
         if let repo = gitRepo, let name = repo.name {
             navigationItem.title = name
@@ -34,6 +36,22 @@ class RepoDetailViewController: UICollectionViewController, UICollectionViewDele
         collectionView.register(RepoDetailViewCell.self, forCellWithReuseIdentifier: repoDetailId)
         collectionView.register(RepoContributorViewCell.self, forCellWithReuseIdentifier: repoContributorId)
         
+    }
+    
+    fileprivate func fetchContributorDetails() {
+        if let gitRepo = self.gitRepo, let urlString = gitRepo.contributors_url {
+            APIServices.shared.fetchRepoContributors(urlString: urlString) { (result) in
+                switch result {
+                case .success(let result):
+                    self.repoContributors = result
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+                default:
+                    return
+                }
+            }
+        }
     }
     
     
@@ -49,6 +67,7 @@ class RepoDetailViewController: UICollectionViewController, UICollectionViewDele
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: repoContributorId, for: indexPath) as! RepoContributorViewCell
+            cell.contributorController.repoContributors = self.repoContributors
             return cell
         }
         
@@ -56,7 +75,7 @@ class RepoDetailViewController: UICollectionViewController, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let size : CGSize = indexPath.row == 0 ? CGSize(width: view.frame.width, height: 450) : CGSize(width: view.frame.width, height: 250)
+        let size : CGSize = indexPath.row == 0 ? CGSize(width: view.frame.width, height: 450) : CGSize(width: view.frame.width, height: 200)
         
         return size
     }
