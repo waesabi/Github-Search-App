@@ -12,7 +12,7 @@ protocol RepoContributorSelectionDelegate {
     func repoContributorSelected(repoContributor: RepoContributor)
 }
 
-class RepoContributorCollectionView: HorizontalCollectionViewController, UICollectionViewDelegateFlowLayout {
+class RepoContributorCollectionView: BaseCollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var delegate: RepoContributorSelectionDelegate?
     

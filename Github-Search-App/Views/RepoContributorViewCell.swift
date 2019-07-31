@@ -12,7 +12,7 @@ class RepoContributorViewCell: UICollectionViewCell {
     
     let headingLabel = UILabel(text: "Contributors", font: .boldSystemFont(ofSize: 24), numberOfLines: 2)
     
-    let contributorController = RepoContributorCollectionView()
+    let contributorController = RepoContributorCollectionView(scrollDirection: .horizontal)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

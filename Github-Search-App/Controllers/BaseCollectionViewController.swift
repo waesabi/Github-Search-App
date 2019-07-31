@@ -10,9 +10,9 @@ import UIKit
 
 class BaseCollectionViewController: UICollectionViewController {
     
-    init() {
+    init(scrollDirection: UICollectionView.ScrollDirection) {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = scrollDirection
         super.init(collectionViewLayout: layout)
         self.collectionView.decelerationRate = .fast
     }

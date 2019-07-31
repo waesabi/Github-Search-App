@@ -12,10 +12,12 @@
 		2F0131C922F140A30059A32F /* RepoDetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0131C822F140A30059A32F /* RepoDetailViewCell.swift */; };
 		2F0131CB22F1E8E40059A32F /* RepoContributorViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0131CA22F1E8E40059A32F /* RepoContributorViewCell.swift */; };
 		2F0131CD22F1E99E0059A32F /* RepoContributorCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0131CC22F1E99E0059A32F /* RepoContributorCollectionView.swift */; };
-		2F0131CF22F1E9B80059A32F /* HorizontalCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0131CE22F1E9B80059A32F /* HorizontalCollectionViewController.swift */; };
+		2F0131CF22F1E9B80059A32F /* BaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0131CE22F1E9B80059A32F /* BaseCollectionViewController.swift */; };
 		2F0131D122F1F0890059A32F /* ContributorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0131D022F1F0890059A32F /* ContributorCell.swift */; };
 		2F0131D322F1F2AA0059A32F /* RepoContributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0131D222F1F2AA0059A32F /* RepoContributor.swift */; };
 		2F0131D522F20DA10059A32F /* ContributorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0131D422F20DA10059A32F /* ContributorDetailViewController.swift */; };
+		2F0131D722F2130C0059A32F /* ContributorRepoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0131D622F2130C0059A32F /* ContributorRepoCell.swift */; };
+		2F0131D922F217480059A32F /* ContributorInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0131D822F217480059A32F /* ContributorInfoView.swift */; };
 		2F629BB422F0A279009BF9DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F629BB322F0A279009BF9DF /* AppDelegate.swift */; };
 		2F629BB622F0A279009BF9DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F629BB522F0A279009BF9DF /* ViewController.swift */; };
 		2F629BB922F0A279009BF9DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F629BB722F0A279009BF9DF /* Main.storyboard */; };
@@ -37,10 +39,12 @@
 		2F0131C822F140A30059A32F /* RepoDetailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoDetailViewCell.swift; sourceTree = "<group>"; };
 		2F0131CA22F1E8E40059A32F /* RepoContributorViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoContributorViewCell.swift; sourceTree = "<group>"; };
 		2F0131CC22F1E99E0059A32F /* RepoContributorCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoContributorCollectionView.swift; sourceTree = "<group>"; };
-		2F0131CE22F1E9B80059A32F /* HorizontalCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCollectionViewController.swift; sourceTree = "<group>"; };
+		2F0131CE22F1E9B80059A32F /* BaseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewController.swift; sourceTree = "<group>"; };
 		2F0131D022F1F0890059A32F /* ContributorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributorCell.swift; sourceTree = "<group>"; };
 		2F0131D222F1F2AA0059A32F /* RepoContributor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoContributor.swift; sourceTree = "<group>"; };
 		2F0131D422F20DA10059A32F /* ContributorDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributorDetailViewController.swift; sourceTree = "<group>"; };
+		2F0131D622F2130C0059A32F /* ContributorRepoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributorRepoCell.swift; sourceTree = "<group>"; };
+		2F0131D822F217480059A32F /* ContributorInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributorInfoView.swift; sourceTree = "<group>"; };
 		2F629BB022F0A279009BF9DF /* Github-Search-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Github-Search-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F629BB322F0A279009BF9DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F629BB522F0A279009BF9DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -121,7 +125,7 @@
 				2F629BC522F0A2C5009BF9DF /* RepoSearchViewController.swift */,
 				2F0131C622F13B530059A32F /* RepoDetailViewController.swift */,
 				2F0131CC22F1E99E0059A32F /* RepoContributorCollectionView.swift */,
-				2F0131CE22F1E9B80059A32F /* HorizontalCollectionViewController.swift */,
+				2F0131CE22F1E9B80059A32F /* BaseCollectionViewController.swift */,
 				2F0131D422F20DA10059A32F /* ContributorDetailViewController.swift */,
 			);
 			path = Controllers;
@@ -161,6 +165,8 @@
 				2F0131C822F140A30059A32F /* RepoDetailViewCell.swift */,
 				2F0131CA22F1E8E40059A32F /* RepoContributorViewCell.swift */,
 				2F0131D022F1F0890059A32F /* ContributorCell.swift */,
+				2F0131D622F2130C0059A32F /* ContributorRepoCell.swift */,
+				2F0131D822F217480059A32F /* ContributorInfoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -289,15 +295,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F0131C522F0C00F0059A32F /* RepoViewCell.swift in Sources */,
+				2F0131D722F2130C0059A32F /* ContributorRepoCell.swift in Sources */,
 				2F0131D322F1F2AA0059A32F /* RepoContributor.swift in Sources */,
 				2F629BCA22F0A40D009BF9DF /* UIView+Layout.swift in Sources */,
 				2F0131C922F140A30059A32F /* RepoDetailViewCell.swift in Sources */,
 				2F0131D522F20DA10059A32F /* ContributorDetailViewController.swift in Sources */,
 				2F629BD722F0BE04009BF9DF /* Extensions.swift in Sources */,
-				2F0131CF22F1E9B80059A32F /* HorizontalCollectionViewController.swift in Sources */,
+				2F0131CF22F1E9B80059A32F /* BaseCollectionViewController.swift in Sources */,
 				2F629BD222F0BA26009BF9DF /* SearchResult.swift in Sources */,
 				2F629BB622F0A279009BF9DF /* ViewController.swift in Sources */,
 				2F629BD022F0AE42009BF9DF /* APIServices.swift in Sources */,
+				2F0131D922F217480059A32F /* ContributorInfoView.swift in Sources */,
 				2F0131CD22F1E99E0059A32F /* RepoContributorCollectionView.swift in Sources */,
 				2F629BC622F0A2C5009BF9DF /* RepoSearchViewController.swift in Sources */,
 				2F0131CB22F1E8E40059A32F /* RepoContributorViewCell.swift in Sources */,

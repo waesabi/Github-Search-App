@@ -28,7 +28,12 @@ class APIServices {
         fetchGenericJSONData(urlString: urlString, completionHandler: completionHandler)
     }
     
-    func fetchRepoContributors(urlString: String, completionHandler: @escaping (Result<[RepoContributor], Error>)-> ()) {
+    func fetchRepoContributors(urlString: String, completionHandler: @escaping (Result<[RepoContributor], Error>) -> ()) {
+        fetchGenericJSONData(urlString: urlString, completionHandler: completionHandler)
+    }
+    
+    
+    func fetchContributorRepos(urlString: String, completionHandler: @escaping (Result<[GitHubRepo],Error>) -> ()) {
         fetchGenericJSONData(urlString: urlString, completionHandler: completionHandler)
     }
     
