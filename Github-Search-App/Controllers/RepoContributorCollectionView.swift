@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol RepoContributorSelectionDelegate {
+    func repoContributorSelected(repoContributor: RepoContributor)
+}
 
 class RepoContributorCollectionView: HorizontalCollectionViewController, UICollectionViewDelegateFlowLayout {
+    
+    var delegate: RepoContributorSelectionDelegate?
     
     let contributorCellId = "contributorCellId"
     
@@ -47,6 +52,13 @@ class RepoContributorCollectionView: HorizontalCollectionViewController, UIColle
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: 200, height: view.frame.height - 32)
+    }
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        guard let repoContributors = repoContributors else { return }
+        delegate?.repoContributorSelected(repoContributor: repoContributors[indexPath.row])
     }
     
 }

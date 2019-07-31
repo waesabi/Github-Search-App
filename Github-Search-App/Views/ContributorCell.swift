@@ -11,7 +11,7 @@ import SDWebImage
 
 class ContributorCell: UICollectionViewCell {
     
-    let contributomImage = UIImageView(cornerRadius: 8)
+    let contributomImage = UIImageView(cornerRadius: 12)
     
     var repoContributor: RepoContributor? {
         didSet {

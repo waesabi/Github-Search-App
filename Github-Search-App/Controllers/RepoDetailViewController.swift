@@ -68,6 +68,7 @@ class RepoDetailViewController: UICollectionViewController, UICollectionViewDele
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: repoContributorId, for: indexPath) as! RepoContributorViewCell
             cell.contributorController.repoContributors = self.repoContributors
+            cell.contributorController.delegate = self
             return cell
         }
         
@@ -79,5 +80,14 @@ class RepoDetailViewController: UICollectionViewController, UICollectionViewDele
         
         return size
     }
+    
+}
+
+extension RepoDetailViewController: RepoContributorSelectionDelegate {
+    
+    func repoContributorSelected(repoContributor: RepoContributor) {
+        print(repoContributor.login ?? "")
+    }
+    
     
 }
