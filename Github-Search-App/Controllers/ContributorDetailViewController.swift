@@ -85,6 +85,14 @@ class ContributorDetailViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.row != 0 {
+            let repo = self.repos[indexPath.row]
+            let desVC = RepoDetailViewController(collectionViewLayout: UICollectionViewFlowLayout())
+            desVC.gitRepo = repo
+            navigationController?.pushViewController(desVC, animated: true)
+        }
+        
+        
     }
     
 }

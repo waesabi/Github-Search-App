@@ -40,6 +40,7 @@ class RepoDetailViewController: UICollectionViewController, UICollectionViewDele
     
     fileprivate func fetchContributorDetails() {
         if let gitRepo = self.gitRepo, let urlString = gitRepo.contributors_url {
+            print(urlString)
             APIServices.shared.fetchRepoContributors(urlString: urlString) { (result) in
                 switch result {
                 case .success(let result):

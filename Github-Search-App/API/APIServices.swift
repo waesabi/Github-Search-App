@@ -73,6 +73,7 @@ class APIServices {
             guard let data = data else { return }
             do {
                 let jsonData = try JSONDecoder().decode(T.self, from: data)
+                print(jsonData)
                 completionHandler(.success(jsonData))
             }
             catch let err {
