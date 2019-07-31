@@ -11,7 +11,7 @@ import UIKit
 /*
  
 1 - Search Api - https://api.github.com/search/repositories?q=podcast&sort=watchers&order=desc
-2 -
+2 - Contributer Api - https://api.github.com/repos/esoxjem/MovieGuide/contributors
  
 */
 

@@ -74,10 +74,6 @@ class RepoSearchViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return gitRepos.count > 0 ? 150 : 0
     }
@@ -93,6 +89,13 @@ class RepoSearchViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return gitRepos.count > 0 ? 0 : 250
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let repoDetailViewController = RepoDetailViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        repoDetailViewController.gitRepo = self.gitRepos[indexPath.row]
+        navigationController?.pushViewController(repoDetailViewController, animated: true)
     }
     
 }
