@@ -32,7 +32,8 @@ class RepoDetailViewController: UICollectionViewController, UICollectionViewDele
     
     fileprivate func setupCollectionView() {
         collectionView.register(RepoDetailViewCell.self, forCellWithReuseIdentifier: repoDetailId)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: repoContributorId)
+        collectionView.register(RepoContributorViewCell.self, forCellWithReuseIdentifier: repoContributorId)
+        
     }
     
     
@@ -47,15 +48,17 @@ class RepoDetailViewController: UICollectionViewController, UICollectionViewDele
             return cell
         }
         else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: repoContributorId, for: indexPath)
-            cell.backgroundColor = .green
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: repoContributorId, for: indexPath) as! RepoContributorViewCell
             return cell
         }
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 450)
+        
+        let size : CGSize = indexPath.row == 0 ? CGSize(width: view.frame.width, height: 450) : CGSize(width: view.frame.width, height: 250)
+        
+        return size
     }
     
 }
