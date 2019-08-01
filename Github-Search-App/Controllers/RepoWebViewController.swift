@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import ProgressHUD
 
 class RepoWebViewController: UIViewController, WKNavigationDelegate {
     
@@ -34,6 +35,18 @@ class RepoWebViewController: UIViewController, WKNavigationDelegate {
         webView.load(URLRequest(url: url))
         webView.allowsBackForwardNavigationGestures = true
         
+    }
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        ProgressHUD.show("Please Wait...")
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        ProgressHUD.dismiss()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        ProgressHUD.dismiss()
     }
     
 }

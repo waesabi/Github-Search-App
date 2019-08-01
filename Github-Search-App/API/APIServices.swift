@@ -23,7 +23,7 @@ class APIServices {
     
     func searchGitRepo(searchedRepo: String, completionHandler: @escaping(Result<SearchResult,Error>) -> ()) {
         
-        let urlString = "https://api.github.com/search/repositories?q=\(searchedRepo)&sort=watchers&order=desc"
+        let urlString = "https://api.github.com/search/repositories?q=\(searchedRepo)"
         
         fetchGenericJSONData(urlString: urlString, completionHandler: completionHandler)
     }

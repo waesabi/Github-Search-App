@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class RepoDetailViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
@@ -41,15 +42,19 @@ class RepoDetailViewController: UICollectionViewController, UICollectionViewDele
     fileprivate func fetchContributorDetails() {
         if let gitRepo = self.gitRepo, let urlString = gitRepo.contributors_url {
             print(urlString)
+            ProgressHUD.show("Loading...")
             APIServices.shared.fetchRepoContributors(urlString: urlString) { (result) in
                 switch result {
                 case .success(let result):
                     self.repoContributors = result
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
+                        ProgressHUD.dismiss()
                     }
-                default:
-                    return
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        ProgressHUD.showError(error.localizedDescription)
+                    }
                 }
             }
         }

@@ -23,7 +23,6 @@ class RepoSearchViewController: UITableViewController {
         setUpTabeView()
         
         setupAPICall(searchedText: "movie")
-
     }
     
     fileprivate func setupAPICall(searchedText: String) {
@@ -39,9 +38,12 @@ class RepoSearchViewController: UITableViewController {
                 DispatchQueue.main.async {
                     ProgressHUD.dismiss()
                     self.tableView.reloadData()
+                   self.navigationItem.rightBarButtonItem?.isEnabled = true
                 }
-            default:
-                return
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    ProgressHUD.showError(error.localizedDescription)
+                }
             }
         }
     }
@@ -71,6 +73,7 @@ class RepoSearchViewController: UITableViewController {
         filterButton.addTarget(self, action: #selector(handleFilter), for: .touchUpInside)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: filterButton)
+        navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
     @objc fileprivate func handleFilter() {
@@ -116,10 +119,6 @@ class RepoSearchViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    
-    
-
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return gitRepos.count
     }
@@ -137,7 +136,7 @@ class RepoSearchViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
-        label.text = "Please enter a search term."
+        label.text = "Please search any github repo."
         label.textAlignment = .center
         label.textColor = .purple
         label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class ContributorDetailViewController: UITableViewController {
     
@@ -32,15 +33,19 @@ class ContributorDetailViewController: UITableViewController {
     fileprivate func fetchContributorRepos() {
         guard let contributor = repoContributor else { return }
         if let urlString = contributor.repos_url {
+            ProgressHUD.show("Loading...")
             APIServices.shared.fetchContributorRepos(urlString: urlString) { (result) in
                 switch result {
                 case .success(let result):
                     self.repos = result
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
+                        ProgressHUD.dismiss()
                     }
-                default:
-                    break;
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        ProgressHUD.showError(error.localizedDescription)
+                    }
                 }
             }
         }
