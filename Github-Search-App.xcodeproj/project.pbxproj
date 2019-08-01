@@ -18,6 +18,7 @@
 		2F0131D522F20DA10059A32F /* ContributorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0131D422F20DA10059A32F /* ContributorDetailViewController.swift */; };
 		2F0131D722F2130C0059A32F /* ContributorRepoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0131D622F2130C0059A32F /* ContributorRepoCell.swift */; };
 		2F0131D922F217480059A32F /* ContributorInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0131D822F217480059A32F /* ContributorInfoView.swift */; };
+		2F0131DB22F29B0E0059A32F /* RepoWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0131DA22F29B0E0059A32F /* RepoWebViewController.swift */; };
 		2F629BB422F0A279009BF9DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F629BB322F0A279009BF9DF /* AppDelegate.swift */; };
 		2F629BB622F0A279009BF9DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F629BB522F0A279009BF9DF /* ViewController.swift */; };
 		2F629BB922F0A279009BF9DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F629BB722F0A279009BF9DF /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 		2F0131D422F20DA10059A32F /* ContributorDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributorDetailViewController.swift; sourceTree = "<group>"; };
 		2F0131D622F2130C0059A32F /* ContributorRepoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributorRepoCell.swift; sourceTree = "<group>"; };
 		2F0131D822F217480059A32F /* ContributorInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributorInfoView.swift; sourceTree = "<group>"; };
+		2F0131DA22F29B0E0059A32F /* RepoWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoWebViewController.swift; sourceTree = "<group>"; };
 		2F629BB022F0A279009BF9DF /* Github-Search-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Github-Search-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F629BB322F0A279009BF9DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F629BB522F0A279009BF9DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				2F0131CC22F1E99E0059A32F /* RepoContributorCollectionView.swift */,
 				2F0131CE22F1E9B80059A32F /* BaseCollectionViewController.swift */,
 				2F0131D422F20DA10059A32F /* ContributorDetailViewController.swift */,
+				2F0131DA22F29B0E0059A32F /* RepoWebViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				2F0131CB22F1E8E40059A32F /* RepoContributorViewCell.swift in Sources */,
 				2F0131D122F1F0890059A32F /* ContributorCell.swift in Sources */,
 				2F0131C722F13B530059A32F /* RepoDetailViewController.swift in Sources */,
+				2F0131DB22F29B0E0059A32F /* RepoWebViewController.swift in Sources */,
 				2F629BCD22F0ACC4009BF9DF /* GitHubRepo.swift in Sources */,
 				2F629BB422F0A279009BF9DF /* AppDelegate.swift in Sources */,
 			);

@@ -33,7 +33,9 @@ class RepoSearchViewController: UITableViewController {
             
             switch result {
             case .success(let result):
-                self.gitRepos = result.items!
+                if let items = result.items {
+                    self.gitRepos = items
+                }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }

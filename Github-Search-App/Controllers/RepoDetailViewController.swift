@@ -64,6 +64,7 @@ class RepoDetailViewController: UICollectionViewController, UICollectionViewDele
         if indexPath.row == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: repoDetailId, for: indexPath) as! RepoDetailViewCell
             cell.gitRepo = self.gitRepo
+            cell.delegate = self
             return cell
         }
         else {
@@ -91,6 +92,11 @@ extension RepoDetailViewController: RepoContributorSelectionDelegate {
         destinationVC.repoContributor = repoContributor
         navigationController?.pushViewController(destinationVC, animated: true)
     }
-    
-    
+}
+
+
+extension RepoDetailViewController: RepoDetailViewCellDelegate {
+    func didTapRepoLink(urlString: String) {
+        print("Clicked URL : \(urlString)")
+    }
 }
