@@ -17,18 +17,13 @@ class RepoDetailViewCell: UICollectionViewCell {
     
     var delegate: RepoDetailViewCellDelegate?
     
-    var gitRepo: GitHubRepo? {
+    var repoViewModel: RepoViewModel? {
         didSet {
-            if let repo = gitRepo {
-                repoName.text = repo.name
-                projectLink.text = repo.html_url
-                if let url = repo.owner?.avatar_url {
-                    repoImage.sd_setImage(with: URL(string: url))
-                }
-                repoDescription.text = repo.description
-                
-                projectLinkButton.setTitle(repo.html_url, for: .normal)
-            }
+            guard let viewModel = repoViewModel else { return }
+            repoName.text = viewModel.name
+            repoDescription.text = viewModel.description
+            projectLinkButton.setTitle(viewModel.htmlUrl, for: .normal)
+            repoImage.sd_setImage(with: viewModel.avatarUrl)
         }
     }
     
@@ -69,8 +64,6 @@ class RepoDetailViewCell: UICollectionViewCell {
         repoNameLabel.constrainWidth(constant: 100)
         projectLinkLabel.constrainWidth(constant: 100)
         descriptionLabel.constrainWidth(constant: 100)
-//        projectLinkButton.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
-    
         
         let stackView = UIStackView(arrangedSubviews: [
             getStackView(leftView: repoNameLabel, rightView: repoName),
@@ -85,10 +78,11 @@ class RepoDetailViewCell: UICollectionViewCell {
         projectLinkButton.addTarget(self, action: #selector(handleLinkClicked), for: .touchUpInside)
     }
     
+    
     @objc fileprivate func handleLinkClicked() {
         print("Button Clicked")
-        if let repo = gitRepo, let urlString = repo.html_url {
-            delegate?.didTapRepoLink(urlString: urlString)
+        if let viewModel = self.repoViewModel {
+            delegate?.didTapRepoLink(urlString: viewModel.htmlUrl)
         }
     }
     
@@ -99,7 +93,6 @@ class RepoDetailViewCell: UICollectionViewCell {
             ])
         stackView.axis = .horizontal
         stackView.spacing = 4
-        // stackView.alignment = .leading
         return stackView
     }
     

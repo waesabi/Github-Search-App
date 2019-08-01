@@ -143,7 +143,10 @@ class RepoSearchViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let repoDetailViewController = RepoDetailViewController(collectionViewLayout: UICollectionViewFlowLayout())
-        repoDetailViewController.gitRepo = self.repoListViewModel?.gitHubRepo(for: indexPath.row)
+//        repoDetailViewController.gitRepo = self.repoListViewModel?.gitHubRepo(for: indexPath.row)
+        if let repoList = self.repoListViewModel {
+            repoDetailViewController.repoViewModel = RepoViewModel(gitRepo: repoList.gitHubRepo(for: indexPath.row))
+        }
         navigationController?.pushViewController(repoDetailViewController, animated: true)
     }
     

@@ -11,18 +11,13 @@ import ProgressHUD
 
 class ContributorDetailViewController: UITableViewController {
     
+    
     fileprivate let cellId = "cellId"
     fileprivate let infoCellId = "infoCellId"
     var repoContributor: RepoContributor?
     
     // ViewModel
     var repoListViewModel: RepoListViewModel?
-    
-    let tableViewHeader : UIView = {
-        let header = UIView()
-        header.backgroundColor = .green
-        return header
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +50,6 @@ class ContributorDetailViewController: UITableViewController {
     
     
     fileprivate func setUpTableView() {
-        tableView.tableHeaderView = tableViewHeader
         tableView.tableFooterView = UIView()
         tableView.register(RepoViewCell.self, forCellReuseIdentifier: cellId)
         tableView.register(ContributorInfoView.self, forCellReuseIdentifier: infoCellId)
@@ -98,7 +92,7 @@ class ContributorDetailViewController: UITableViewController {
             if let viewModel = self.repoListViewModel {
                 
                 let desVC = RepoDetailViewController(collectionViewLayout: UICollectionViewFlowLayout())
-                desVC.gitRepo = viewModel.gitHubRepo(for: indexPath.row)
+                desVC.repoViewModel = RepoViewModel(gitRepo: viewModel.gitHubRepo(for: indexPath.row))
                 navigationController?.pushViewController(desVC, animated: true)
             }
             

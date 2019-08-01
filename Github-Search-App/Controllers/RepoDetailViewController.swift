@@ -11,10 +11,12 @@ import ProgressHUD
 
 class RepoDetailViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    var gitRepo : GitHubRepo?
     let repoDetailId = "repoDetailId"
     let repoContributorId = "repoContributorId"
     var repoContributors = [RepoContributor]()
+    
+    // ViewModel
+    var repoViewModel: RepoViewModel?
     
     
     
@@ -28,8 +30,8 @@ class RepoDetailViewController: UICollectionViewController, UICollectionViewDele
     }
 
     fileprivate func setupNavigationBar() {
-        if let repo = gitRepo, let name = repo.name {
-            navigationItem.title = name
+        if let viewModel = self.repoViewModel {
+            navigationItem.title = viewModel.name
         }
     }
     
@@ -40,7 +42,8 @@ class RepoDetailViewController: UICollectionViewController, UICollectionViewDele
     }
     
     fileprivate func fetchContributorDetails() {
-        if let gitRepo = self.gitRepo, let urlString = gitRepo.contributors_url {
+        if let viewModel = self.repoViewModel {
+            let urlString = viewModel.contributorsUrl
             print(urlString)
             ProgressHUD.show("Loading...")
             APIServices.shared.fetchRepoContributors(urlString: urlString) { (result) in
@@ -68,7 +71,7 @@ class RepoDetailViewController: UICollectionViewController, UICollectionViewDele
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.row == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: repoDetailId, for: indexPath) as! RepoDetailViewCell
-            cell.gitRepo = self.gitRepo
+            cell.repoViewModel = self.repoViewModel
             cell.delegate = self
             return cell
         }
