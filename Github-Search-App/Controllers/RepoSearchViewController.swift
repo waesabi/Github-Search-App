@@ -85,9 +85,9 @@ class RepoSearchViewController: UITableViewController {
     }
     
     fileprivate func showActionSheet() {
-        let alertController = UIAlertController(title: "Sort", message: "Sort the result by Wathers Count or Name", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "Sort", message: "Sort the result by Watchers Count or Name", preferredStyle: .actionSheet)
         
-        alertController.addAction(UIAlertAction(title: "Sort by Wathers Count", style: .default, handler: { (_) in
+        alertController.addAction(UIAlertAction(title: "Sort by Watchers Count", style: .default, handler: { (_) in
             self.sortGitRepoByWatcherCount()
         }))
         

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol RepoContributorSelectionDelegate {
-    func repoContributorSelected(repoContributor: RepoContributor)
+    func repoContributorSelected(repoContributorViewModel: ContributorViewModel)
 }
 
 class RepoContributorCollectionView: BaseCollectionViewController, UICollectionViewDelegateFlowLayout {
@@ -19,6 +19,12 @@ class RepoContributorCollectionView: BaseCollectionViewController, UICollectionV
     let contributorCellId = "contributorCellId"
     
     var repoContributors: [RepoContributor]? {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    var repoContributoListModel: ContributorListModel? {
         didSet {
             self.collectionView.reloadData()
         }
@@ -36,15 +42,18 @@ class RepoContributorCollectionView: BaseCollectionViewController, UICollectionV
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return repoContributors?.count ?? 0
+        return repoContributoListModel?.numberOfContributors ?? 0
     }
     
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: contributorCellId, for: indexPath) as! ContributorCell
-        if let contributors = self.repoContributors {
-            let contributor = contributors[indexPath.row]
-            cell.repoContributor = contributor
+//        if let contributors = self.repoContributors {
+//            let contributor = contributors[indexPath.row]
+//            cell.repoContributor = contributor
+//        }
+        if let viewModel = self.repoContributoListModel {
+            cell.contributorViewModel = ContributorViewModel(repoContributor: viewModel.repoContributor(for: indexPath.row))
         }
         return cell
     }
@@ -57,8 +66,8 @@ class RepoContributorCollectionView: BaseCollectionViewController, UICollectionV
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        guard let repoContributors = repoContributors else { return }
-        delegate?.repoContributorSelected(repoContributor: repoContributors[indexPath.row])
+        guard let viewModel = repoContributoListModel else { return }
+        delegate?.repoContributorSelected(repoContributorViewModel: ContributorViewModel(repoContributor: viewModel.repoContributor(for: indexPath.row)))
     }
     
 }

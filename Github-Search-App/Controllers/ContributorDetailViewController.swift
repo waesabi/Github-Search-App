@@ -18,18 +18,18 @@ class ContributorDetailViewController: UITableViewController {
     
     // ViewModel
     var repoListViewModel: RepoListViewModel?
+    var repoContributorViewModel: ContributorViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
-        print(repoContributor?.repos_url ?? "")
         fetchContributorRepos()
-        navigationItem.title = repoContributor?.login ?? ""
+        navigationItem.title = repoContributorViewModel?.login ?? ""
     }
     
     fileprivate func fetchContributorRepos() {
-        guard let contributor = repoContributor else { return }
-        if let urlString = contributor.repos_url {
+        if let viewModel = repoContributorViewModel {
+            let urlString = viewModel.reposUrl
             ProgressHUD.show("Loading...")
             APIServices.shared.fetchContributorRepos(urlString: urlString) { (result) in
                 switch result {
@@ -68,7 +68,7 @@ class ContributorDetailViewController: UITableViewController {
         
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: infoCellId, for: indexPath) as! ContributorInfoView
-            cell.repoContributor = self.repoContributor
+            cell.repoContributorViewModel = self.repoContributorViewModel
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RepoViewCell

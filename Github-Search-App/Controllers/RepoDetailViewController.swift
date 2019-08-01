@@ -17,8 +17,8 @@ class RepoDetailViewController: UICollectionViewController, UICollectionViewDele
     
     // ViewModel
     var repoViewModel: RepoViewModel?
-    
-    
+    var contributorListModel: ContributorListModel?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +49,8 @@ class RepoDetailViewController: UICollectionViewController, UICollectionViewDele
             APIServices.shared.fetchRepoContributors(urlString: urlString) { (result) in
                 switch result {
                 case .success(let result):
-                    self.repoContributors = result
+                    // self.repoContributors = result
+                    self.contributorListModel = ContributorListModel(repoContributorsList: result)
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
                         ProgressHUD.dismiss()
@@ -77,7 +78,8 @@ class RepoDetailViewController: UICollectionViewController, UICollectionViewDele
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: repoContributorId, for: indexPath) as! RepoContributorViewCell
-            cell.contributorController.repoContributors = self.repoContributors
+//            cell.contributorController.repoContributors = self.repoContributors
+            cell.contributorController.repoContributoListModel = self.contributorListModel
             cell.contributorController.delegate = self
             return cell
         }
@@ -93,12 +95,17 @@ class RepoDetailViewController: UICollectionViewController, UICollectionViewDele
 }
 
 extension RepoDetailViewController: RepoContributorSelectionDelegate {
+    func repoContributorSelected(repoContributorViewModel: ContributorViewModel) {
+        print(repoContributorViewModel.login)
+        let destinationVC = ContributorDetailViewController()
+        destinationVC.repoContributorViewModel = repoContributorViewModel
+        navigationController?.pushViewController(destinationVC, animated: true)
+    }
+    
     
     func repoContributorSelected(repoContributor: RepoContributor) {
-        print(repoContributor.login ?? "")
-        let destinationVC = ContributorDetailViewController()
-        destinationVC.repoContributor = repoContributor
-        navigationController?.pushViewController(destinationVC, animated: true)
+        
+        
     }
 }
 

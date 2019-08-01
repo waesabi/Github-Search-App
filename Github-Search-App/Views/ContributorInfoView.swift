@@ -13,11 +13,20 @@ class ContributorInfoView: UITableViewCell {
     
     let contributorImage = UIImageView(cornerRadius: 10)
     
-    var repoContributor: RepoContributor? {
+//    var repoContributor: RepoContributor? {
+//        didSet {
+//            if let contributor = repoContributor, let urlString = contributor.avatar_url {
+//                 contributorImage.sd_setImage(with: URL(string: urlString))
+//                label.text = "Repo List"
+//            }
+//        }
+//    }
+    
+    var repoContributorViewModel: ContributorViewModel? {
         didSet {
-            if let contributor = repoContributor, let urlString = contributor.avatar_url {
-                 contributorImage.sd_setImage(with: URL(string: urlString))
+            if let viewModel = repoContributorViewModel {
                 label.text = "Repo List"
+                contributorImage.sd_setImage(with: viewModel.avatarUrl)
             }
         }
     }

@@ -19,6 +19,8 @@
 		2F0131D722F2130C0059A32F /* ContributorRepoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0131D622F2130C0059A32F /* ContributorRepoCell.swift */; };
 		2F0131D922F217480059A32F /* ContributorInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0131D822F217480059A32F /* ContributorInfoView.swift */; };
 		2F0131DB22F29B0E0059A32F /* RepoWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0131DA22F29B0E0059A32F /* RepoWebViewController.swift */; };
+		2F5572B222F36B9A00FBA9D7 /* ContributorListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5572B122F36B9A00FBA9D7 /* ContributorListModel.swift */; };
+		2F5572B422F36C6000FBA9D7 /* ContributorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5572B322F36C6000FBA9D7 /* ContributorViewModel.swift */; };
 		2F629BB422F0A279009BF9DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F629BB322F0A279009BF9DF /* AppDelegate.swift */; };
 		2F629BB622F0A279009BF9DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F629BB522F0A279009BF9DF /* ViewController.swift */; };
 		2F629BB922F0A279009BF9DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F629BB722F0A279009BF9DF /* Main.storyboard */; };
@@ -49,6 +51,8 @@
 		2F0131D622F2130C0059A32F /* ContributorRepoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributorRepoCell.swift; sourceTree = "<group>"; };
 		2F0131D822F217480059A32F /* ContributorInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributorInfoView.swift; sourceTree = "<group>"; };
 		2F0131DA22F29B0E0059A32F /* RepoWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoWebViewController.swift; sourceTree = "<group>"; };
+		2F5572B122F36B9A00FBA9D7 /* ContributorListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributorListModel.swift; sourceTree = "<group>"; };
+		2F5572B322F36C6000FBA9D7 /* ContributorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributorViewModel.swift; sourceTree = "<group>"; };
 		2F629BB022F0A279009BF9DF /* Github-Search-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Github-Search-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F629BB322F0A279009BF9DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F629BB522F0A279009BF9DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -184,6 +188,8 @@
 			children = (
 				2FC67E2F22F34C410067A596 /* RepoViewModel.swift */,
 				2FC67E3122F350320067A596 /* RepoListViewModel.swift */,
+				2F5572B122F36B9A00FBA9D7 /* ContributorListModel.swift */,
+				2F5572B322F36C6000FBA9D7 /* ContributorViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -323,9 +329,11 @@
 				2FC67E3022F34C410067A596 /* RepoViewModel.swift in Sources */,
 				2F629BB622F0A279009BF9DF /* ViewController.swift in Sources */,
 				2F629BD022F0AE42009BF9DF /* APIServices.swift in Sources */,
+				2F5572B422F36C6000FBA9D7 /* ContributorViewModel.swift in Sources */,
 				2F0131D922F217480059A32F /* ContributorInfoView.swift in Sources */,
 				2F0131CD22F1E99E0059A32F /* RepoContributorCollectionView.swift in Sources */,
 				2FC67E3222F350320067A596 /* RepoListViewModel.swift in Sources */,
+				2F5572B222F36B9A00FBA9D7 /* ContributorListModel.swift in Sources */,
 				2F629BC622F0A2C5009BF9DF /* RepoSearchViewController.swift in Sources */,
 				2F0131CB22F1E8E40059A32F /* RepoContributorViewCell.swift in Sources */,
 				2F0131D122F1F0890059A32F /* ContributorCell.swift in Sources */,
