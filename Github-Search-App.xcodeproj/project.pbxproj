@@ -30,6 +30,8 @@
 		2F629BD022F0AE42009BF9DF /* APIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F629BCF22F0AE42009BF9DF /* APIServices.swift */; };
 		2F629BD222F0BA26009BF9DF /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F629BD122F0BA26009BF9DF /* SearchResult.swift */; };
 		2F629BD722F0BE04009BF9DF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F629BD622F0BE04009BF9DF /* Extensions.swift */; };
+		2FC67E3022F34C410067A596 /* RepoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC67E2F22F34C410067A596 /* RepoViewModel.swift */; };
+		2FC67E3222F350320067A596 /* RepoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC67E3122F350320067A596 /* RepoListViewModel.swift */; };
 		DB84D8E077196ED2CFBDA200 /* Pods_Github_Search_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B24B13A9299522935CFF68 /* Pods_Github_Search_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +62,8 @@
 		2F629BCF22F0AE42009BF9DF /* APIServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServices.swift; sourceTree = "<group>"; };
 		2F629BD122F0BA26009BF9DF /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		2F629BD622F0BE04009BF9DF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		2FC67E2F22F34C410067A596 /* RepoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoViewModel.swift; sourceTree = "<group>"; };
+		2FC67E3122F350320067A596 /* RepoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoListViewModel.swift; sourceTree = "<group>"; };
 		B18D3CA4A8E98A67A0054789 /* Pods-Github-Search-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Github-Search-App.release.xcconfig"; path = "Target Support Files/Pods-Github-Search-App/Pods-Github-Search-App.release.xcconfig"; sourceTree = "<group>"; };
 		F1B24B13A9299522935CFF68 /* Pods_Github_Search_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Github_Search_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -106,6 +110,7 @@
 		2F629BB222F0A279009BF9DF /* Github-Search-App */ = {
 			isa = PBXGroup;
 			children = (
+				2FC67E2E22F34C220067A596 /* ViewModels */,
 				2F629BD322F0BB80009BF9DF /* Views */,
 				2F629BCE22F0AE32009BF9DF /* API */,
 				2F629BCB22F0ACAC009BF9DF /* Model */,
@@ -172,6 +177,15 @@
 				2F0131D822F217480059A32F /* ContributorInfoView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		2FC67E2E22F34C220067A596 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				2FC67E2F22F34C410067A596 /* RepoViewModel.swift */,
+				2FC67E3122F350320067A596 /* RepoListViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		B71C7892C510C5822D2290C3 /* Frameworks */ = {
@@ -306,10 +320,12 @@
 				2F629BD722F0BE04009BF9DF /* Extensions.swift in Sources */,
 				2F0131CF22F1E9B80059A32F /* BaseCollectionViewController.swift in Sources */,
 				2F629BD222F0BA26009BF9DF /* SearchResult.swift in Sources */,
+				2FC67E3022F34C410067A596 /* RepoViewModel.swift in Sources */,
 				2F629BB622F0A279009BF9DF /* ViewController.swift in Sources */,
 				2F629BD022F0AE42009BF9DF /* APIServices.swift in Sources */,
 				2F0131D922F217480059A32F /* ContributorInfoView.swift in Sources */,
 				2F0131CD22F1E99E0059A32F /* RepoContributorCollectionView.swift in Sources */,
+				2FC67E3222F350320067A596 /* RepoListViewModel.swift in Sources */,
 				2F629BC622F0A2C5009BF9DF /* RepoSearchViewController.swift in Sources */,
 				2F0131CB22F1E8E40059A32F /* RepoContributorViewCell.swift in Sources */,
 				2F0131D122F1F0890059A32F /* ContributorCell.swift in Sources */,

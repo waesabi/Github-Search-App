@@ -22,8 +22,6 @@ class RepoWebViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.prefersLargeTitles = false
-        
         view.addSubview(webView)
         webView.fillSuperview(padding: .init(top: 0, left: 0, bottom: 0, right: 0))
         

@@ -12,6 +12,18 @@ import SDWebImage
 
 class RepoViewCell: UITableViewCell {
     
+    var repoViewModel: RepoViewModel? {
+        didSet {
+            guard let viewModel = repoViewModel else { return }
+            repoName.text = viewModel.name
+            repoFullName.text = viewModel.fullName
+            watchersLabel.text = viewModel.watchers
+            repoImage.sd_setImage(with: viewModel.avatarUrl)
+        }
+    }
+        
+    // Gonna remove this after configuring VewModel for contributor Repos VC
+    
     var gitHubRepo: GitHubRepo? {
         didSet {
             repoName.text = gitHubRepo?.name

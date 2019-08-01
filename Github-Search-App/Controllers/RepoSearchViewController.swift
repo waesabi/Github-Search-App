@@ -11,10 +11,14 @@ import ProgressHUD
 
 class RepoSearchViewController: UITableViewController {
     
+    
+    // ViewModel
+    var repoListViewModel: RepoListViewModel?
+    
+    
     fileprivate let searchBarController = UISearchController(searchResultsController: nil)
     fileprivate let cellId = "cellId"
     var timer : Timer?
-    var gitRepos = [GitHubRepo]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +37,7 @@ class RepoSearchViewController: UITableViewController {
             switch result {
             case .success(let result):
                 if let items = result.items {
-                    self.gitRepos = items
+                    self.repoListViewModel = RepoListViewModel(gitHubRepoList: items)
                 }
                 DispatchQueue.main.async {
                     ProgressHUD.dismiss()
@@ -77,7 +81,6 @@ class RepoSearchViewController: UITableViewController {
     }
     
     @objc fileprivate func handleFilter() {
-        print("Filter search result")
         showActionSheet()
     }
     
@@ -98,40 +101,30 @@ class RepoSearchViewController: UITableViewController {
     }
     
     fileprivate func sortGitRepoByWatcherCount() {
-        let sortedRepo = self.gitRepos.sorted { (repo1, repo2) -> Bool in
-            if let wCount1 = repo1.watchers , let wCount2 = repo2.watchers {
-                return wCount1 > wCount2
-            }
-            return false
-        }
-        self.gitRepos = sortedRepo
+        self.repoListViewModel?.sortByWatchersCount()
         self.tableView.reloadData()
     }
     
     fileprivate func sortGitRepoByName() {
-        let sortedRepo = self.gitRepos.sorted { (repo1, repo2) -> Bool in
-            if let wName1 = repo1.name , let wName2 = repo2.name {
-                return wName1 < wName2
-            }
-            return false
-        }
-        self.gitRepos = sortedRepo
+        self.repoListViewModel?.sortByName()
         self.tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return gitRepos.count
+        return repoListViewModel?.numberOfRepos ?? 0
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RepoViewCell
-        cell.gitHubRepo = self.gitRepos[indexPath.row]
+        if let viewModel = self.repoListViewModel {
+            cell.repoViewModel = RepoViewModel(gitRepo: viewModel.gitHubRepo(for: indexPath.row))
+        }
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return gitRepos.count > 0 ? 150 : 0
+        return (self.repoListViewModel?.numberOfRepos ?? 0) > 0 ? 150 : 0
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -144,20 +137,17 @@ class RepoSearchViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return gitRepos.count > 0 ? 0 : 250
+        return (self.repoListViewModel?.numberOfRepos ?? 0) > 0 ? 0 : 250
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let repoDetailViewController = RepoDetailViewController(collectionViewLayout: UICollectionViewFlowLayout())
-        repoDetailViewController.gitRepo = self.gitRepos[indexPath.row]
+        repoDetailViewController.gitRepo = self.repoListViewModel?.gitHubRepo(for: indexPath.row)
         navigationController?.pushViewController(repoDetailViewController, animated: true)
     }
     
 }
-
-
-
 
 extension RepoSearchViewController : UISearchBarDelegate {
     
