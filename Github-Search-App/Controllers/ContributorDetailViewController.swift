@@ -14,7 +14,9 @@ class ContributorDetailViewController: UITableViewController {
     fileprivate let cellId = "cellId"
     fileprivate let infoCellId = "infoCellId"
     var repoContributor: RepoContributor?
-    var repos = [GitHubRepo]()
+    
+    // ViewModel
+    var repoListViewModel: RepoListViewModel?
     
     let tableViewHeader : UIView = {
         let header = UIView()
@@ -37,7 +39,7 @@ class ContributorDetailViewController: UITableViewController {
             APIServices.shared.fetchContributorRepos(urlString: urlString) { (result) in
                 switch result {
                 case .success(let result):
-                    self.repos = result
+                    self.repoListViewModel = RepoListViewModel(gitHubRepoList: result)
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                         ProgressHUD.dismiss()
@@ -63,7 +65,7 @@ class ContributorDetailViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repos.count
+        return self.repoListViewModel?.numberOfRepos ?? 0
     }
 
 
@@ -76,25 +78,30 @@ class ContributorDetailViewController: UITableViewController {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RepoViewCell
-            let gitHubRepo = repos[indexPath.row]
-            cell.gitHubRepo = gitHubRepo
+            if let viewModel = self.repoListViewModel {
+                cell.repoViewModel = RepoViewModel(gitRepo: viewModel.gitHubRepo(for: indexPath.row))
+            }
+            
             return cell
         }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return repos.count > 0 ? (indexPath.row == 0 ? 300 : 150) : 0
+        return (self.repoListViewModel?.numberOfRepos ?? 0) > 0 ? (indexPath.row == 0 ? 300 : 150) : 0
     }
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row != 0 {
-            let repo = self.repos[indexPath.row]
-            let desVC = RepoDetailViewController(collectionViewLayout: UICollectionViewFlowLayout())
-            desVC.gitRepo = repo
-            navigationController?.pushViewController(desVC, animated: true)
+            if let viewModel = self.repoListViewModel {
+                
+                let desVC = RepoDetailViewController(collectionViewLayout: UICollectionViewFlowLayout())
+                desVC.gitRepo = viewModel.gitHubRepo(for: indexPath.row)
+                navigationController?.pushViewController(desVC, animated: true)
+            }
+            
         }
         
         

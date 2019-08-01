@@ -21,19 +21,7 @@ class RepoViewCell: UITableViewCell {
             repoImage.sd_setImage(with: viewModel.avatarUrl)
         }
     }
-        
-    // Gonna remove this after configuring VewModel for contributor Repos VC
-    
-    var gitHubRepo: GitHubRepo? {
-        didSet {
-            repoName.text = gitHubRepo?.name
-            repoFullName.text = gitHubRepo?.full_name
-            watchersLabel.text = "\(gitHubRepo?.watchers ?? 0) Watcher"
-            if let repo = gitHubRepo, let avatar_url = repo.owner?.avatar_url {
-                repoImage.sd_setImage(with: URL(string: avatar_url))
-            }
-        }
-    }
+
     
     let repoImage = UIImageView(cornerRadius: 8)
     let repoName = UILabel(text: "Name", font: .boldSystemFont(ofSize: 18), numberOfLines: 2)
