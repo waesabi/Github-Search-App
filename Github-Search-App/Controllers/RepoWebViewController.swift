@@ -9,18 +9,31 @@
 import UIKit
 import WebKit
 
-class RepoWebViewController: UIViewController {
+class RepoWebViewController: UIViewController, WKNavigationDelegate {
     
-    var webView : WKWebView!
+    let webView : WKWebView = {
+        let webView = WKWebView()
+        return webView
+    }()
     
-//    override func loadView() {
-//        webView = WKWebView()
-//        webView.navigationDelegate = self
-//        view = webView
-//    }
-    
+    var repoUrl: String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.navigationBar.prefersLargeTitles = false
+        
+        view.addSubview(webView)
+        webView.fillSuperview(padding: .init(top: 0, left: 0, bottom: 0, right: 0))
+        
+        webView.navigationDelegate = self
+        
+        guard let urlString = repoUrl else { return }
+        guard let url = URL(string: urlString) else { return }
+        
+        webView.load(URLRequest(url: url))
+        webView.allowsBackForwardNavigationGestures = true
+        
     }
     
 }

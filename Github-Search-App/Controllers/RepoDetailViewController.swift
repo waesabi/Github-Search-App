@@ -98,5 +98,8 @@ extension RepoDetailViewController: RepoContributorSelectionDelegate {
 extension RepoDetailViewController: RepoDetailViewCellDelegate {
     func didTapRepoLink(urlString: String) {
         print("Clicked URL : \(urlString)")
+        let webViewVC = RepoWebViewController()
+        webViewVC.repoUrl = urlString
+        navigationController?.pushViewController(webViewVC, animated: true)
     }
 }

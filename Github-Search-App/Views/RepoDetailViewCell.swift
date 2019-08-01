@@ -41,8 +41,7 @@ class RepoDetailViewCell: UICollectionViewCell {
     let projectLinkButton : UIButton = {
         let button = UIButton(type: .system)
         button.setTitleColor(#colorLiteral(red: 0.2196078431, green: 0.5921568627, blue: 0.9411764706, alpha: 1), for: .normal)
-        // button.backgroundColor = .green
-        button.titleLabel?.textAlignment = NSTextAlignment.left
+        button.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
         return button
     }()
     
@@ -70,6 +69,7 @@ class RepoDetailViewCell: UICollectionViewCell {
         repoNameLabel.constrainWidth(constant: 100)
         projectLinkLabel.constrainWidth(constant: 100)
         descriptionLabel.constrainWidth(constant: 100)
+//        projectLinkButton.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
     
         
         let stackView = UIStackView(arrangedSubviews: [
