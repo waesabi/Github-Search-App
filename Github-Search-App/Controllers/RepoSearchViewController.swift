@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class RepoSearchViewController: UITableViewController {
     
@@ -22,13 +23,12 @@ class RepoSearchViewController: UITableViewController {
         setUpTabeView()
         
         setupAPICall(searchedText: "movie")
-        
+
     }
-    
-    
     
     fileprivate func setupAPICall(searchedText: String) {
         print("setupAPICall Called")
+        ProgressHUD.show("Loading...")
         APIServices.shared.searchGitRepo(searchedRepo: searchedText) { (result) in
             
             switch result {
@@ -37,6 +37,7 @@ class RepoSearchViewController: UITableViewController {
                     self.gitRepos = items
                 }
                 DispatchQueue.main.async {
+                    ProgressHUD.dismiss()
                     self.tableView.reloadData()
                 }
             default:
@@ -51,7 +52,7 @@ class RepoSearchViewController: UITableViewController {
         tableView.register(RepoViewCell.self, forCellReuseIdentifier: cellId)
     }
     
-    
+
     fileprivate func setUpSearchBar() {
         navigationItem.title = "GitRepo"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -60,7 +61,62 @@ class RepoSearchViewController: UITableViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         searchBarController.dimsBackgroundDuringPresentation = false
         searchBarController.searchBar.delegate = self
+    
+        setupBarButtonItem()
     }
+    
+    fileprivate func setupBarButtonItem() {
+        let filterButton = UIButton(type: .system)
+        filterButton.setImage(#imageLiteral(resourceName: "filter"), for: .normal)
+        filterButton.addTarget(self, action: #selector(handleFilter), for: .touchUpInside)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: filterButton)
+    }
+    
+    @objc fileprivate func handleFilter() {
+        print("Filter search result")
+        showActionSheet()
+    }
+    
+    fileprivate func showActionSheet() {
+        let alertController = UIAlertController(title: "Sort", message: "Sort the result by Wathers Count or Name", preferredStyle: .actionSheet)
+        
+        alertController.addAction(UIAlertAction(title: "Sort by Wathers Count", style: .default, handler: { (_) in
+            self.sortGitRepoByWatcherCount()
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "Sort by name", style: .default, handler: { (_) in
+            self.sortGitRepoByName()
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        self.present(alertController, animated: true)
+    }
+    
+    fileprivate func sortGitRepoByWatcherCount() {
+        let sortedRepo = self.gitRepos.sorted { (repo1, repo2) -> Bool in
+            if let wCount1 = repo1.watchers , let wCount2 = repo2.watchers {
+                return wCount1 > wCount2
+            }
+            return false
+        }
+        self.gitRepos = sortedRepo
+        self.tableView.reloadData()
+    }
+    
+    fileprivate func sortGitRepoByName() {
+        let sortedRepo = self.gitRepos.sorted { (repo1, repo2) -> Bool in
+            if let wName1 = repo1.name , let wName2 = repo2.name {
+                return wName1 < wName2
+            }
+            return false
+        }
+        self.gitRepos = sortedRepo
+        self.tableView.reloadData()
+    }
+    
+    
     
 
 
