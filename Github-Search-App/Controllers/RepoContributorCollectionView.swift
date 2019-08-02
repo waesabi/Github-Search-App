@@ -48,10 +48,6 @@ class RepoContributorCollectionView: BaseCollectionViewController, UICollectionV
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: contributorCellId, for: indexPath) as! ContributorCell
-//        if let contributors = self.repoContributors {
-//            let contributor = contributors[indexPath.row]
-//            cell.repoContributor = contributor
-//        }
         if let viewModel = self.repoContributoListModel {
             cell.contributorViewModel = ContributorViewModel(repoContributor: viewModel.repoContributor(for: indexPath.row))
         }
