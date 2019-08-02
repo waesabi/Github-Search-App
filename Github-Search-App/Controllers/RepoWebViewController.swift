@@ -21,19 +21,28 @@ class RepoWebViewController: UIViewController, WKNavigationDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.addSubview(webView)
-        webView.fillSuperview(padding: .init(top: 0, left: 0, bottom: 0, right: 0))
-        
-        webView.navigationDelegate = self
-        
-        guard let urlString = repoUrl else { return }
-        guard let url = URL(string: urlString) else { return }
-        
-        webView.load(URLRequest(url: url))
-        webView.allowsBackForwardNavigationGestures = true
+    
+        setUpViews()
+        loadWebPage()
         
     }
+
+    fileprivate func setUpViews() {
+        view.addSubview(webView)
+        webView.fillSuperview(padding: .init(top: 0, left: 0, bottom: 0, right: 0))
+        webView.navigationDelegate = self
+    }
+    
+    fileprivate func loadWebPage() {
+        guard let urlString = repoUrl else {
+            ProgressHUD.showError("Can't load the empty url...")
+            return
+        }
+        guard let url = URL(string: urlString) else { return }
+        webView.load(URLRequest(url: url))
+        webView.allowsBackForwardNavigationGestures = true
+    }
+    
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         ProgressHUD.show("Please Wait...")
@@ -41,6 +50,11 @@ class RepoWebViewController: UIViewController, WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         ProgressHUD.dismiss()
+    }
+    
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        ProgressHUD.showError(error.localizedDescription)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

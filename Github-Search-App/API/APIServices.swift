@@ -44,9 +44,7 @@ class APIServices {
                 completionHandler(.failure(error))
                 return
             }
-            guard let data = data else {
-                return
-            }
+            guard let data = data else { return }
             do {
                 let repos = try JSONDecoder().decode(SearchResult.self, from: data)
             

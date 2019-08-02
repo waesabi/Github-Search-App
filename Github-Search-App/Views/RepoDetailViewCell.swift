@@ -37,6 +37,7 @@ class RepoDetailViewCell: UICollectionViewCell {
         let button = UIButton(type: .system)
         button.setTitleColor(#colorLiteral(red: 0.2196078431, green: 0.5921568627, blue: 0.9411764706, alpha: 1), for: .normal)
         button.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
+        button.titleLabel?.numberOfLines = 2
         return button
     }()
     
@@ -61,10 +62,7 @@ class RepoDetailViewCell: UICollectionViewCell {
     
     
     fileprivate func setupStackViews() {
-        repoNameLabel.constrainWidth(constant: 100)
-        projectLinkLabel.constrainWidth(constant: 100)
-        descriptionLabel.constrainWidth(constant: 100)
-        
+
         let stackView = UIStackView(arrangedSubviews: [
             getStackView(leftView: repoNameLabel, rightView: repoName),
             getStackView(leftView: projectLinkLabel, rightView: projectLinkButton),
@@ -73,14 +71,14 @@ class RepoDetailViewCell: UICollectionViewCell {
         stackView.axis = .vertical
         stackView.spacing = 8
         self.addSubview(stackView)
-        stackView.anchor(top: repoImage.bottomAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 24, left: 16, bottom: 0, right: 15))
+        
+        stackView.anchor(top: repoImage.bottomAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 24, left: 16, bottom: 0, right: 16))
         
         projectLinkButton.addTarget(self, action: #selector(handleLinkClicked), for: .touchUpInside)
     }
     
     
     @objc fileprivate func handleLinkClicked() {
-        print("Button Clicked")
         if let viewModel = self.repoViewModel {
             delegate?.didTapRepoLink(urlString: viewModel.htmlUrl)
         }
@@ -92,7 +90,8 @@ class RepoDetailViewCell: UICollectionViewCell {
             rightView
             ])
         stackView.axis = .horizontal
-        stackView.spacing = 4
+        stackView.spacing = 8
+        leftView.constrainWidth(constant: 100)
         return stackView
     }
     

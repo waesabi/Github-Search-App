@@ -13,14 +13,6 @@ class ContributorCell: UICollectionViewCell {
     
     let contributomImage = UIImageView(cornerRadius: 12)
     
-//    var repoContributor: RepoContributor? {
-//        didSet {
-//            if let contributor = repoContributor, let imageUrl = contributor.avatar_url {
-//                contributomImage.sd_setImage(with: URL(string: imageUrl))
-//            }
-//        }
-//    }
-    
     var contributorViewModel: ContributorViewModel? {
         didSet {
             if let viewModel = contributorViewModel {

@@ -49,7 +49,6 @@ class RepoDetailViewController: UICollectionViewController, UICollectionViewDele
             APIServices.shared.fetchRepoContributors(urlString: urlString) { (result) in
                 switch result {
                 case .success(let result):
-                    // self.repoContributors = result
                     self.contributorListModel = ContributorListModel(repoContributorsList: result)
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
@@ -78,7 +77,6 @@ class RepoDetailViewController: UICollectionViewController, UICollectionViewDele
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: repoContributorId, for: indexPath) as! RepoContributorViewCell
-//            cell.contributorController.repoContributors = self.repoContributors
             cell.contributorController.repoContributoListModel = self.contributorListModel
             cell.contributorController.delegate = self
             return cell
@@ -102,11 +100,6 @@ extension RepoDetailViewController: RepoContributorSelectionDelegate {
         navigationController?.pushViewController(destinationVC, animated: true)
     }
     
-    
-    func repoContributorSelected(repoContributor: RepoContributor) {
-        
-        
-    }
 }
 
 
