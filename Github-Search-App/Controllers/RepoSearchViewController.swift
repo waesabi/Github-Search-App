@@ -25,12 +25,9 @@ class RepoSearchViewController: UITableViewController {
 
         setUpSearchBar()
         setUpTabeView()
-        
-        setupAPICall(searchedText: "movie")
     }
     
     fileprivate func setupAPICall(searchedText: String) {
-        print("setupAPICall Called")
         ProgressHUD.show("Loading...")
         APIServices.shared.searchGitRepo(searchedRepo: searchedText) { (result) in
             
@@ -143,7 +140,6 @@ class RepoSearchViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let repoDetailViewController = RepoDetailViewController(collectionViewLayout: UICollectionViewFlowLayout())
-//        repoDetailViewController.gitRepo = self.repoListViewModel?.gitHubRepo(for: indexPath.row)
         if let repoList = self.repoListViewModel {
             repoDetailViewController.repoViewModel = RepoViewModel(gitRepo: repoList.gitHubRepo(for: indexPath.row))
         }
